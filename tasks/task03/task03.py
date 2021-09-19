@@ -13,5 +13,6 @@ for ind, sentence in enumerate(texts):
         else:
             res[word][0] += 1
 print("%-10s%-10s%-10s" % ("word", "count", "first line"))
-for i in res.items():
-    print("%-10s%-10d%-10d" % (i[0], i[1][0], i[1][1]))
+for word, values in res.items():
+    count, first_line = values
+    print("%-10s%-10d%-10d" % (word, count, first_line))
