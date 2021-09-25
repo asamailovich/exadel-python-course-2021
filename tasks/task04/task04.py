@@ -2,11 +2,12 @@ def collect_leaves(i) -> list:
     res = []
     if type(i) is list:
         return i
-    for node, values in i.items():
-        if isinstance(values, list):
-            res.extend(values)
-        elif isinstance(values, dict):
-            res.extend(collect_leaves(values))
+    if type(i) is dict:
+        for node, values in i.items():
+            if isinstance(values, list):
+                res.extend(values)
+            elif isinstance(values, dict):
+                res.extend(collect_leaves(values))
     return res
 
 
