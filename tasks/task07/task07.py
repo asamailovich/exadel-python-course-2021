@@ -12,9 +12,9 @@ class Good:
 
 
 class Order:
-    def __init__(self, order_id: int, order_date, client_id: int):
+    def __init__(self, order_id: int, client_id: int):
         self.id = order_id
-        self.order_date = order_date
+        self.order_date = date.today()
         self.client_id = client_id
         self.goods = []
 
@@ -30,10 +30,6 @@ class Order:
                f", price: {self.price}"
 
     @property
-    def price(self):
-        return self.price
-
-    @price.getter
     def price(self):
         result = 0
         for good in self.goods:
@@ -69,21 +65,19 @@ class OrderRepository:
 good1 = Good(1, 'Keyboard', 11)
 good2 = Good(2, 'Mouse', 5)
 good3 = Good(3, 'Mouse pad', 2)
-# get date
-d = date.today()
 # create order1 and add 2 goods
-order1 = Order(1, d, 1)
+order1 = Order(1, 1)
 order1.add_good(good1)
 order1.add_good(good2)
 assert order1.price == 16
 # create order2 and add 3 goods
-order2 = Order(2, d, 2)
+order2 = Order(2, 2)
 order2.add_good(good1)
 order2.add_good(good2)
 order2.add_good(good3)
 assert order2.price == 18
 # create order3 and add 2 goods
-order3 = Order(3, d, 3)
+order3 = Order(3, 3)
 order3.add_good(good2)
 order3.add_good(good3)
 assert order3.price == 7
