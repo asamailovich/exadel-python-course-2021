@@ -21,12 +21,6 @@ class Order:
     def add_good(self, good: Good):
         self.goods.append(good)
 
-    def get_price(self):
-        result = 0
-        for good in self.goods:
-            result += good.price
-        return result
-
     def __str__(self):
         goods = ""
         for good in self.goods:
@@ -35,7 +29,16 @@ class Order:
                f", goods: ({goods})" \
                f", price: {self.price}"
 
-    price = property(get_price)
+    @property
+    def price(self):
+        return self.price
+
+    @price.getter
+    def price(self):
+        result = 0
+        for good in self.goods:
+            result += good.price
+        return result
 
 
 class OrderRepository:
